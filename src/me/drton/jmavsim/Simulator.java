@@ -428,6 +428,7 @@ public class Simulator implements Runnable {
 
     public final static String PRINT_INDICATION_STRING = "-m [<MsgID[, MsgID]...>]";
     public final static String UDP_STRING = "-udp <mav ip>:<mav port>";
+    public final static String HOME_STRING = "-home <lat>,<lon>,<alt>";
     public final static String QGC_STRING = "-qgc <qgc ip address>:<qgc peer port>";
     public final static String SERIAL_STRING = "-serial [<path> <baudRate>]";
     public final static String MAG_STRING = "-automag";
@@ -478,6 +479,33 @@ public class Simulator implements Runnable {
                 } else {
                     // if user ONLY passes in -m, monitor all messages.
                     continue;
+                }
+            }
+            else if (arg.equalsIgnoreCase("-home")) {
+                if (i == args.length) {
+                    // only arg is -home, so use default values.
+                    break;
+                }
+                if (i < args.length) {
+                    String nextArg = args[i++];
+                    try {
+                        // try to parse passed-in lat,lon,alt.
+                        String[] list = nextArg.split(",");
+                        if (list.length != 3) {
+                            System.err.println("Expected: " + HOME_STRING + ", got: " + Arrays.toString(list));
+                            return;
+                        }
+                        //jpcastle
+                        DEFAULT_ORIGIN_POS.lat = Double.parseDouble(list[0]);
+                        DEFAULT_ORIGIN_POS.lon = Double.parseDouble(list[1]);
+                        DEFAULT_ORIGIN_POS.alt = Double.parseDouble(list[2]);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Expected: " + USAGE_STRING + ", got: " + e.toString());
+                        return;
+                    }
+                } else {
+                    System.err.println("-home needs an argument: " + HOME_STRING);
+                    return;
                 }
             }
             else if (arg.equalsIgnoreCase("-udp")) {
