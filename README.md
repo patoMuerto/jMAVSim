@@ -1,6 +1,15 @@
 [![Build Status](https://travis-ci.org/PX4/jMAVSim.svg?branch=master)](https://travis-ci.org/PX4/jMAVSim)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/DrTon/jMAVSim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
+### Fork of jMAVSim ###
+
+This fork of jMAVSim allows for setting the home position from the command line.  Small changes were made to jMAVSim, jMAVlib, and jmavsim_run.sh.  The px4 sitl_run.sh needs to be modifed to pass the home position to jmavsim_run.sh.  A modified sitl_run.sh, copied from https://github.com/PX4/Firmware/tree/master/Tools, is in the root folder of this repository.
+
+Thanks to the PX4 and jMAVSim developers for some very impressive products.
+
+### ORIGINAL README ###
+
 Simple multirotor simulator with MAVLink protocol support
 
 ### Installation ###
