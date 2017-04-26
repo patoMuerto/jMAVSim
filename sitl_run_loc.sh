@@ -100,6 +100,8 @@ SIM_PID=0
 if [ "$program" == "jmavsim" ] && [ ! -n "$no_sim" ]
 #if [ ! "$home" == "" ]; then homearg="-home $home"; fi
 then
+	
+   echo "JMAVSIM_COMMAND: $src_path/Tools/jmavsim_run_loc.sh -h $jmavsim_home &"
 	$src_path/Tools/jmavsim_run.sh -h $jmavsim_home &
 	SIM_PID=`echo $!`
 	cd ../..
@@ -146,7 +148,7 @@ fi
 # Do not exit on failure now from here on because we want the complete cleanup
 set +e
 
-sitl_command="$sudo_enabled $sitl_bin $no_pxh $chroot_enabled $src_path $src_path/${rcS_dir}/${model}"
+sitl_command="$sudo_enabled $sitl_bin $no_pxh $chroot_enabled $src_path ${rcS_dir}/${model}"
 
 echo SITL COMMAND: $sitl_command
 
