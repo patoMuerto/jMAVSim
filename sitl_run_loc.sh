@@ -102,7 +102,7 @@ if [ "$program" == "jmavsim" ] && [ ! -n "$no_sim" ]
 then
 	
    echo "JMAVSIM_COMMAND: $src_path/Tools/jmavsim_run_loc.sh -h $jmavsim_home &"
-	$src_path/Tools/jmavsim_run.sh -h $jmavsim_home &
+	$src_path/Tools/jmavsim_run_loc.sh -h $jmavsim_home &
 	SIM_PID=`echo $!`
 	cd ../..
 elif [ "$program" == "gazebo" ] && [ ! -n "$no_sim" ]
